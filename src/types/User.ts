@@ -1,9 +1,10 @@
+import { Order } from "./Order";
+
 export interface User {
-	name: string;
+	id: number;
 	email: string;
-	roles: string[];
-	phone?: string;
-	photo?: string;
-	bio?: string;
-	payout?: string;
+	password?: string;
+	name: string;
+	points: number;
+	orders?: Order[];
 }

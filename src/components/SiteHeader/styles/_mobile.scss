@@ -1,5 +1,6 @@
 .SiteHeader {
 	@apply p-5 flex items-center justify-between;
+	@apply border-b border-stone-200;
 
 	.Brand {
 		@apply w-1/2;
@@ -16,6 +17,16 @@
 	.Actions {
 		@apply w-1/2;
 		@apply flex items-center justify-end;
+
+		.Points {
+			@apply mr-5 flex items-center gap-2;
+			@apply text-stone-700;
+
+			.Value {
+				@apply font-medium;
+			}
+		}
+
 	}
 
 } // .SiteHeader

@@ -65,7 +65,7 @@ export default function UserMenu(props: {
 			
 			<button ref={setReferenceElement} className={styles.UserBadge} onClick={() => setActive(!active)}>
 				<Icon className={styles.MenuIcon} name={active ? "close" : "menu"} />
-				<UserPhoto src={props.user.photo} />
+				<span className={styles.Label}>Menu</span>
 			</button>
 
 			{active && <div ref={setPopperElement} className={styles.Dropdown} style={{
@@ -73,58 +73,21 @@ export default function UserMenu(props: {
 				zIndex: 4000,
 			}} {...attributes.popper}>
 
-				{(!pathname.includes("/admin/") && pathname !== "/admin") ? <>
-
-					<Link href="/" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/") })}>
-						<span>Beranda</span>
-						<Icon className={styles.DropdownItemIcon} name="home" />
-					</Link>
-					<Link href="/about" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/about") })}>
-						<span>Tentang Restay</span>
-						<Icon className={styles.DropdownItemIcon} name="info" />
-					</Link>
-					<Link href="/help" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/help") })}>
-						<span>Bantuan</span>
-						<Icon className={styles.DropdownItemIcon} name="contact_support" />
-					</Link>
-
-					<div className={styles.Separator}></div>
-
-					<Link href="/reservations" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/reservations") })}>
-						<span>Reservasi</span>
-						<Icon className={styles.DropdownItemIcon} name="receipt_long" />
-					</Link>
-					<Link href="/wishlist" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/wishlist") })}>
-						<span>Wishlist</span>
-						<Icon className={styles.DropdownItemIcon} name="favorite" />
-					</Link>
-
-					<div className={styles.Separator}></div>
-
-					{props.user.roles.includes("admin") && <>
-						<Link href="/admin" className={classNames(styles.DropdownItem)}>
-							<span>Admin Panel</span>
-							<Icon className={styles.DropdownItemIcon} name="admin_panel_settings" />
-						</Link>
-						<div className={styles.Separator}></div>
-					</>}
-
-				</> : <>
-
-					{props.user.roles.includes("admin") && <>
-						<Link href="/" className={classNames(styles.DropdownItem)}>
-							<span>Mode Pengunjung</span>
-							<Icon className={styles.DropdownItemIcon} name="explore" />
-						</Link>
-						<div className={styles.Separator}></div>
-					</>}
-
-				</>}
-
-				<Link href="/settings" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/settings") })}>
-					<span>Pengaturan</span>
-					<Icon className={styles.DropdownItemIcon} name="settings" />
+				<Link href="/" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/") })}>
+					<span>Home</span>
+					<Icon className={styles.DropdownItemIcon} name="home" />
 				</Link>
+				<Link href="/about" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/about") })}>
+					<span>About</span>
+					<Icon className={styles.DropdownItemIcon} name="info" />
+				</Link>
+				<Link href="/orders" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/help") })}>
+					<span>My Orders ({props.user.orders?.length ?? 0})</span>
+					<Icon className={styles.DropdownItemIcon} name="receipt_long" />
+				</Link>
+
+				<div className={styles.Separator}></div>
+
 				<Link href="/logout" className={styles.DropdownItem}>
 					<span>Logout</span>
 					<Icon className={styles.DropdownItemIcon} name="logout" />

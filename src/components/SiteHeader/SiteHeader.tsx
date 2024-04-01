@@ -13,6 +13,7 @@ import { User } from "@/types/User";
 import AuthUtils from "@/utils/AuthUtils";
 import GuestMenu from "./components/GuestMenu/component";
 import UserMenu from "./components/UserMenu/component";
+import { Button } from "@/ui";
 
 export default function SiteHeader() {
 
@@ -59,11 +60,17 @@ export default function SiteHeader() {
 
 			<div className={styles.Actions}>
 				{user && <>
+					<div className={styles.Points}>
+						<span className={styles.Label}>My Points</span>
+						<span className={styles.Value}>{user.points}</span>
+					</div>
 					<UserMenu user={user} />
 				</>}
 
 				{!user && <>
-					<GuestMenu />
+					<Button href="/register" label="Register" size="small" />
+					&nbsp;
+					<Button href="/login" label="Login" size="small" color="dark" />
 				</>}
 			</div>
 

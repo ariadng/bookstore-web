@@ -18,7 +18,7 @@ export default class AuthUtils {
 		const authToken = token ?? AuthUtils.getToken();
 		if (!authToken) return null;
 
-		const response = await fetch(process.env.NEXT_PUBLIC_API_URL! + "/profile", {
+		const response = await fetch(process.env.NEXT_PUBLIC_API_URL! + "/auth/profile", {
 			method: "GET",
 			headers: {
 				'Authorization': 'Bearer ' + authToken,
