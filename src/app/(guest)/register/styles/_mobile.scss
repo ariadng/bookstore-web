@@ -1,8 +1,8 @@
-.LoginPage {
+.RegisterPage {
 	@apply w-[100svw] h-[100svh];
 	@apply flex flex-col items-center justify-center;
 
-	.LoginBox {
+	.RegisterBox {
 		@apply w-full  max-w-[380px] p-6;
 		@apply flex flex-col gap-6;
 		@apply text-stone-700;
@@ -17,6 +17,6 @@
 			@apply text-3xl font-bold;
 		}
 
-	} // .LoginBox
+	} // .RegisterBox
 
-} // .LoginPage
+} // .RegisterPage

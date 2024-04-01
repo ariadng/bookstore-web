@@ -9,12 +9,16 @@ export interface AuthContextProps {
 	user: User | null;
 	isAuthenticated: Function;
 	isAdmin: Function;
+	login: Function;
+	register: Function;
 }
 
 export const AuthContextDefaults: AuthContextProps = {
 	user: null,
 	isAuthenticated: () => { },
 	isAdmin: () => { },
+	login: () => { },
+	register: () => { },
 }
 
 export const AuthContext = createContext<AuthContextProps>(AuthContextDefaults);
@@ -42,6 +46,8 @@ export function AuthProvider(props: AuthProviderProps) {
 		user: user,
 		isAuthenticated: AuthUtils.isAuthenticated,
 		isAdmin: AuthUtils.isAdmin,
+		login: AuthUtils.login,
+		register: AuthUtils.register,
 	};
 
 	useEffect(() => {

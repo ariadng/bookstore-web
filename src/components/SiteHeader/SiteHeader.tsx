@@ -21,18 +21,14 @@ export default function SiteHeader() {
 
 	const [ filter, setFilter ] = useState<Filter>({});
 	const [ user, setUser ] = useState<User|null>(null);
+	const [ searchQuery, setSearchQuery ] = useState<string>("");
 
 	const handleSearch = useCallback(() => {
-		let params: any = {};
-		if (filter.type) params.type = filter.type;
-		if (filter.guests) params.guests = filter.guests;
-		if (filter.dates && filter.dates[0] && filter.dates[1]) {
-			params.dateFrom = filter.dates[0];
-			params.dateTo = filter.dates[1];
-		}
-		const searchParams = new URLSearchParams(params).toString();
+		const searchParams = new URLSearchParams({
+			query: searchQuery,
+		}).toString();
 		router.push("/?" + searchParams);
-	}, [filter]);
+	}, [filter, searchQuery]);
 
 	const checkAuth = useCallback(async () => {
 		setUser(await AuthUtils.getUser());
@@ -54,7 +50,7 @@ export default function SiteHeader() {
 			<div className={styles.Search}>
 				<div className={styles.SearchForm}>
 					
-					<input className={styles.QueryInput} placeholder="Search..." />
+					<input className={styles.QueryInput} placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.currentTarget.value)} onKeyUp={(e) =>{ if (e.key === "Enter") handleSearch() }} />
 					<button className={styles.SearchButton} onClick={() => handleSearch()}>
 						<img src="/icons/search_white.svg" />
 					</button>

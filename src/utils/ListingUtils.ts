@@ -14,7 +14,7 @@ export default class ListingUtils {
 
 	public static async search(params: { [key: string]: string }): Promise<Book[]> {
 		const searchParams = new URLSearchParams(params).toString();
-		const response = await fetch(process.env.NEXT_PUBLIC_API_URL! + "/search?" + searchParams);
+		const response = await fetch(process.env.NEXT_PUBLIC_API_URL! + "/book/search?" + searchParams);
 		const json = await response.json();
 
 		if (json.error) return [];

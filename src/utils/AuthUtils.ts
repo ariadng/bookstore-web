@@ -47,6 +47,54 @@ export default class AuthUtils {
 		return user.roles.includes("admin");
 	}
 
+	public static async login(email: string, password: string) {
+		const response = await fetch(process.env.NEXT_PUBLIC_API_URL! + "/auth/login", {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ email, password })
+		});
+		const json = await response.json();
+
+		if (json.error) return {
+			error: true,
+			message: json.message,
+		}
+
+		AuthUtils.setToken(json.data.token);
+
+		return {
+			error: false,
+			message: json.message,
+		}
+
+	}
+
+	public static async register(name: string, email: string, password: string) {
+		const response = await fetch(process.env.NEXT_PUBLIC_API_URL! + "/auth/register", {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ email, password, name })
+		});
+		const json = await response.json();
+
+		if (json.error) return {
+			error: true,
+			message: json.message,
+		}
+
+		AuthUtils.setToken(json.data.token);
+
+		return {
+			error: false,
+			message: json.message,
+		}
+
+	}
+
 	public static async logout() {
 		localStorage.removeItem("token");
 	}
