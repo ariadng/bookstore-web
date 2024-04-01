@@ -1,0 +1,21 @@
+.SiteHeader {
+	@apply p-5 flex items-center justify-between;
+
+	.Brand {
+		@apply w-1/2;
+
+		img {
+			@apply h-8 w-auto;
+		}
+	}
+
+	.Search {
+		@apply hidden;
+	}
+
+	.Actions {
+		@apply w-1/2;
+		@apply flex items-center justify-end;
+	}
+
+} // .SiteHeader

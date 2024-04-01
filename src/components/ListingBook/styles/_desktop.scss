@@ -1,0 +1,15 @@
+.ListingBook {
+	@apply p-10 min-h-fit;
+	@apply flex flex-col items-center;
+
+	.ListingDetails, .Section {
+		@apply w-[600px];
+		@apply rounded-lg drop-shadow-sm;
+	}
+	
+	.Actions {
+		@apply w-[600px];
+		@apply rounded-lg drop-shadow-sm;
+		@apply border-none;
+	}
+} // .ListingBook

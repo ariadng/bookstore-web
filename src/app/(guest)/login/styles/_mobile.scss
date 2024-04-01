@@ -1,0 +1,18 @@
+.LoginPage {
+	@apply w-[100svw] h-[100svh];
+	@apply flex flex-col items-center justify-center;
+	@apply bg-stone-100;
+
+	.LoginBox {
+		@apply w-full  max-w-[380px] p-6;
+		@apply flex flex-col gap-6;
+		@apply text-stone-700;
+		@apply bg-white rounded-xl drop-shadow-md;
+
+		h1 {
+			@apply text-xl font-bold;
+		}
+
+	} // .LoginBox
+
+} // .LoginPage

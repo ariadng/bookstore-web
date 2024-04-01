@@ -1,0 +1,19 @@
+@import "@/styles/breakpoints";
+
+// [ Mobile ]
+@import "./mobile";
+
+// [ Tablet Styling ]
+@media screen and (min-width: $breakpoint-tablet) {
+	@import "./tablet";
+} // ↑ Tablet Styling
+
+// [ Desktop Styling ]
+@media screen and (min-width: $breakpoint-desktop) {
+	@import "./desktop";
+} // ↑ Desktop Styling
+
+// [ Wide Styling ]
+@media screen and (min-width: $breakpoint-wide) {
+	@import "./wide";
+} // ↑ Wide Styling

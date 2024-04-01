@@ -1,0 +1,40 @@
+{
+	"name": "restay-web",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@googlemaps/js-api-loader": "^1.16.6",
+		"@popperjs/core": "^2.11.8",
+		"classnames": "^2.5.1",
+		"gsap": "^3.12.5",
+		"lodash": "^4.17.21",
+		"luxon": "^3.4.4",
+		"next": "14.1.4",
+		"react": "^18",
+		"react-dom": "^18",
+		"react-popper": "^2.3.0",
+		"sass": "^1.72.0",
+		"swiper": "^11.0.7"
+	},
+	"devDependencies": {
+		"@types/google.maps": "^3.55.5",
+		"@types/gsap": "^3.0.0",
+		"@types/lodash": "^4.17.0",
+		"@types/luxon": "^3.4.2",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"autoprefixer": "^10.0.1",
+		"eslint": "^8",
+		"eslint-config-next": "14.1.4",
+		"postcss": "^8",
+		"tailwindcss": "^3.3.0",
+		"typescript": "^5"
+	}
+}

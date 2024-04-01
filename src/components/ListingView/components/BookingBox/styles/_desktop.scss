@@ -1,0 +1,51 @@
+.BookingBox {
+	@apply sticky top-[100px] z-[100];
+	@apply h-0 w-full overflow-visible;
+	@apply flex justify-end;
+
+	.Box {
+		@apply mr-4 w-[350px] h-fit p-4;
+		@apply bg-white rounded-xl drop-shadow-sm;
+		
+		.SelectDate {
+			
+			.Label {
+				@apply font-semibold text-stone-700;
+			}
+			
+			.Field {
+				@apply w-full h-12 mt-4;
+				@apply font-semibold text-stone-800;
+				@apply rounded-md border-2 border-stone-200;
+
+				&:active {
+					@apply opacity-80;
+				}
+			}
+
+		}
+
+		.Actions {
+			@apply mt-4;
+		}
+
+		.Pricing {
+			@apply mt-4 pt-4;
+			@apply border-t border-stone-200;
+			
+			.Row {
+				@apply flex items-center justify-between;
+
+				.Label {
+					@apply text-stone-600;
+				}
+
+				.Value {
+					@apply font-medium text-stone-700;
+				}
+			}
+		}
+	
+	} // .Box
+
+} // .BookingBox

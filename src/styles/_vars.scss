@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Domine:wght@400;700&display=swap");
+
+:root {
+
+	// Dimensions
+	--navbar-height: 4rem;
+	--spacing: 1rem;
+
+	// Colors
+	--color-primary: #00B47E;
+	--color-primary-lighter: #0cc38c;
+	--color-primary-light: #20dea5;
+	--color-primary-100: #d5fbef;
+	--color-primary-50: #eefcf8;
+	--color-dark: #292524;
+
+	// Fonts
+	--font-input: "Helvetica Neue", Helvetica, "Roboto", Arial, sans-serif;
+	--font-serif: "Merriweather", serif;
+
+	// Transitions
+	--transition-easing: cubic-bezier(.14, .63, .33, .9);
+	--transition-default: all 0.3s var(--transition-easing);
+
+	// Breakpoints
+	--breakpoint-tablet: 500px;
+	--breakpoint-desktop: 1080px;
+	--breakpoint-wide: 1600px;
+
+}

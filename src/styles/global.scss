@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./vars";
+
+// Disable tap highlight on mobile devices
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
+body {
+	@apply w-[100svw] h-[100svh];
+	@apply overflow-hidden;
+	overscroll-behavior-y: contain;
+
+	@apply text-stone-700;
+	font-family: "Rubik", sans-serif;
+}
+
+.Screen {
+	@apply w-full h-full;
+	@apply flex flex-col overflow-hidden;
+
+	.ScreenContent {
+		@apply grow shrink;
+		@apply flex flex-col overflow-y-auto overflow-x-hidden;
+	} // .ScreenContent
+
+} // .Screen

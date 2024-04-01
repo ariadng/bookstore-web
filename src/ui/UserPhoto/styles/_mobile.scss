@@ -1,0 +1,9 @@
+.UserPhoto {
+	@apply inline-block w-10 h-10;
+	@apply overflow-hidden rounded-full;
+
+	img {
+		@apply w-full h-full object-cover;
+	}
+
+} // .UserPhoto

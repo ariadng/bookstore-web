@@ -1,0 +1,18 @@
+.GoogleLoginButton {
+	@apply relative flex items-center justify-center;
+	@apply w-full h-14 px-2;
+	@apply rounded-md;
+	@apply bg-stone-800;
+	@apply text-stone-100 font-semibold;
+	transition: var(--transition-default);
+
+	.Icon {
+		@apply absolute left-4;
+	}
+
+	&:active {
+		@apply opacity-80;
+		transition-duration: 0s;
+	}
+
+} // .GoogleLoginButton

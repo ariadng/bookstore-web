@@ -1,0 +1,88 @@
+@use "@/styles/mixins/scrollbar";
+
+.AdminListingViewLayout {
+	@apply w-full h-full;
+	@apply shrink-0 grow-0;
+	@apply flex flex-col overflow-hidden;
+	@apply bg-white border-l border-stone-200;
+
+	.Header {
+		@apply p-4 h-20 grow-0 shrink-0;
+		@apply flex items-center;
+		@apply border-b border-stone-200;
+
+		.Title {
+			@apply ml-2;
+			@apply font-semibold text-stone-700;
+		}
+
+		.LeftActions {
+			@apply flex items-center gap-1;
+		}
+
+		.RightActions {
+			@apply ml-auto flex items-center gap-1;
+		}
+
+	} // .Header
+
+	.Body {
+		@apply w-full h-full;
+		@apply flex flex-col overflow-hidden;
+
+		.List {
+			@apply px-4 pt-4 pb-10 grow shrink; 
+			@apply min-h-0 overflow-x-hidden overflow-y-auto;
+			@apply flex flex-col gap-2;
+			@apply bg-white;
+			@include scrollbar.secondary;
+			scrollbar-gutter: auto;
+
+			.ListItem {
+				@apply h-[120px] p-2 overflow-hidden;
+				@apply grow-0 shrink-0;
+				@apply flex items-center gap-4;
+				@apply bg-stone-50 rounded-xl;
+
+				&:hover {
+					@apply bg-stone-100;
+				}
+
+				&:active {
+					@apply opacity-70;
+				}
+
+				&.Active {
+					@apply bg-rose-50;
+				}
+			
+				.Photo {
+					@apply grow-0 shrink-0;
+					@apply h-full aspect-[4/3];
+					@apply rounded-lg overflow-hidden;
+
+					img {
+						@apply w-full h-full object-cover;
+					}
+				} // .Photo
+
+				.Text {
+					@apply flex flex-col gap-2 pr-2;
+
+					.Title {
+						@apply font-semibold text-stone-700 text-sm;
+					}
+
+					.Info {
+						@apply font-medium text-stone-500 text-xs;
+					}
+
+				} // .Text
+			
+			} // .ListItem
+
+		} // .List
+
+	} // .Body
+
+} // .AdminListingLayout

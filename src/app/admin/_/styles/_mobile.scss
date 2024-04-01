@@ -1,0 +1,26 @@
+.AdminLayout {
+	@apply w-[100svw] h-[100svh] overflow-hidden;
+	@apply flex items-stretch;
+	@apply bg-stone-100;
+
+	.AdminPageContainer {
+		@apply grow shrink;
+	} // .AdminPageContainer
+
+} // .AdminLayout
+
+.AdminIndexPage {
+	@apply w-full h-full;
+	@apply flex flex-col items-center justify-center text-center gap-2;
+
+	.Icon {
+		@apply text-stone-300 text-[4rem];
+		@apply select-none;
+	}
+
+	.Lead {
+		@apply text-stone-400 text-lg;
+		@apply select-none;
+	}
+
+} // .AdminIndexPage

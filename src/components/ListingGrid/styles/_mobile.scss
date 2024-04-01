@@ -1,0 +1,44 @@
+.ListingGrid {
+	@apply grid grid-cols-1 gap-5;
+
+	.ListingItem {
+		@apply flex flex-col;
+
+		.Photos {
+
+			@apply relative mb-6 pb-4;
+			@apply w-full aspect-square overflow-hidden;
+			@apply flex items-center justify-center;
+			@apply border-b border-stone-200;
+			
+			img, .Placeholder {
+				@apply h-full aspect-[9/13] object-cover;
+				@apply rounded-lg;
+				@apply bg-stone-100 drop-shadow-lg;
+			}
+		}
+
+		.Title {
+			@apply font-semibold text-lg text-stone-800;
+			@apply text-ellipsis overflow-hidden whitespace-nowrap;
+		}
+
+		.Info {
+			@apply mt-4 text-stone-600 text-sm;
+			font-family: var(--font-serif);
+		}
+
+		.Price {
+			@apply mt-4;
+
+			.Value {
+				@apply font-medium text-stone-700;
+			}
+			.Unit {
+				@apply text-stone-500;
+			}
+		}
+
+	} // .ListingItem
+
+} // .ListingGrid
