@@ -7,10 +7,15 @@
 		@apply text-left;
 
 		.Photos {
-			@apply aspect-square;
+			@apply aspect-[3/4];
+		}
+
+		.Title {
+			@apply text-lg leading-[1.2];
 		}
 
 		.Info {
+			@apply mt-3;
 			@apply text-sm;
 		}
 	}

@@ -87,6 +87,10 @@ export default function ListingGrid(props: {
 
 	}, 1000);
 
+	const formatTags = (tags: string[]) => {
+		return tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()).join(", ");
+	}
+
 	useEffect(() => {
 		loadData();
 	}, [props.searchParams]);
@@ -109,11 +113,17 @@ export default function ListingGrid(props: {
 					<span className={styles.Photos}>
 						{(item.cover && item.cover !== "") ? <img src={item.cover} alt={item.title ?? ""} loading="lazy" /> : <span className={styles.Placeholder} />}
 					</span>
+					<span className={styles.Price}>
+						<Button label={`Order for ${item.price} coins`} width="full" color="primary" onClick={() => orderBook(item.id)} />
+					</span>
 					<span className={styles.Title}>
 						{item.title}
 					</span>
-					<span className={styles.Price}>
-						<Button label={`Order for ${item.price} coins`} width="full" color="primary" onClick={() => orderBook(item.id)} />
+					<span className={styles.Author}>
+						{item.writer}
+					</span>
+					<span className={styles.Tags}>
+						{formatTags(item.tags)}
 					</span>
 					<span className={styles.Info}>
 						{item.description}
