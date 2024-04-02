@@ -11,6 +11,7 @@ export interface AuthContextProps {
 	isAdmin: Function;
 	login: Function;
 	register: Function;
+	refreshUser: Function;
 }
 
 export const AuthContextDefaults: AuthContextProps = {
@@ -19,6 +20,7 @@ export const AuthContextDefaults: AuthContextProps = {
 	isAdmin: () => { },
 	login: () => { },
 	register: () => { },
+	refreshUser: () => { },
 }
 
 export const AuthContext = createContext<AuthContextProps>(AuthContextDefaults);
@@ -48,6 +50,7 @@ export function AuthProvider(props: AuthProviderProps) {
 		isAdmin: AuthUtils.isAdmin,
 		login: AuthUtils.login,
 		register: AuthUtils.register,
+		refreshUser,
 	};
 
 	useEffect(() => {

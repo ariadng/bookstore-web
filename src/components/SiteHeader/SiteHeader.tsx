@@ -14,14 +14,15 @@ import AuthUtils from "@/utils/AuthUtils";
 import GuestMenu from "./components/GuestMenu/component";
 import UserMenu from "./components/UserMenu/component";
 import { Button } from "@/ui";
+import { useAuth } from "@/context/AuthContext";
 
 export default function SiteHeader() {
 
+	const { user } = useAuth();
 	const router = useRouter();
 	const pathname = usePathname();
 
 	const [ filter, setFilter ] = useState<Filter>({});
-	const [ user, setUser ] = useState<User|null>(null);
 	const [ searchQuery, setSearchQuery ] = useState<string>("");
 
 	const handleSearch = useCallback(() => {
@@ -30,14 +31,6 @@ export default function SiteHeader() {
 		}).toString();
 		router.push("/?" + searchParams);
 	}, [filter, searchQuery]);
-
-	const checkAuth = useCallback(async () => {
-		setUser(await AuthUtils.getUser());
-	}, [pathname]);
-
-	useEffect(() => {
-		checkAuth();
-	}, [pathname]);
 
 	return (
 		<div className={classNames(styles.SiteHeader)}>
@@ -61,8 +54,8 @@ export default function SiteHeader() {
 			<div className={styles.Actions}>
 				{user && <>
 					<div className={styles.Points}>
-						<span className={styles.Label}>My Points</span>
 						<span className={styles.Value}>{user.points}</span>
+						<span className={styles.Label}>Points</span>
 					</div>
 					<UserMenu user={user} />
 				</>}

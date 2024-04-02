@@ -1,20 +1,29 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
+import { OrderRepository } from "@/repository/OrderRepository";
 import styles from "./styles/style.module.scss";
-import Link from "next/link";
-import { PriceUtils } from "@/utils/PriceUtils";
 import { Book } from "@/types/Book";
 import { Button } from "@/ui";
+import { useAuth } from "@/context/AuthContext";
 
 export default function ListingGrid(props: {
 	data: Book[];
 }) {
+
+	const { refreshUser, isAuthenticated } = useAuth();
+
+	const orderBook = async (bookId: number) => {
+		
+		if (await isAuthenticated()) {
+			const { error, message } = await OrderRepository.orderBook(bookId);
+			alert(message);
+			if (!error) refreshUser();
+		} else {
+			alert("Please login/register to order a book.")
+		}
+
+	};
+
 	return (
 		<div className={styles.ListingGrid}>
 			{props.data.map(item => (
@@ -29,7 +38,7 @@ export default function ListingGrid(props: {
 						{item.title}
 					</span>
 					<span className={styles.Price}>
-						<Button label={`Order for ${item.price} coins`} width="full" color="primary" size="small" />
+						<Button label={`Order for ${item.price} coins`} width="full" color="primary" onClick={() => orderBook(item.id)} />
 					</span>
 					<span className={styles.Info}>
 						{item.description}

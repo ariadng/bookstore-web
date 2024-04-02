@@ -34,7 +34,8 @@ export default class AuthUtils {
 	}
 
 	public static async isAuthenticated(token?: string) {
-		return (await AuthUtils.getUser(token)) !== null;
+		const user = await AuthUtils.getUser(token);
+		return user !== null;
 	}
 
 	public static async isAdmin() {
@@ -44,7 +45,7 @@ export default class AuthUtils {
 		const user = await AuthUtils.getUser(token);
 		if (!user) return false;
 
-		return user.roles.includes("admin");
+		return false;
 	}
 
 	public static async login(email: string, password: string) {

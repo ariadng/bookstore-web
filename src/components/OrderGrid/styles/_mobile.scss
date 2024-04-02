@@ -1,13 +1,14 @@
-.ListingGrid {
-	@apply grid grid-cols-1 gap-5;
+.OrderGrid {
+	@apply grid grid-cols-1 gap-5 overflow-visible;
 
 	.ListingItem {
-		@apply flex flex-col pb-10;
+		@apply flex flex-col p-5;
+		@apply bg-white rounded-xl drop-shadow-lg;
 
 		.Photos {
 
 			@apply relative mb-6 pb-4;
-			@apply w-full aspect-square overflow-hidden;
+			@apply w-full aspect-[4/3] overflow-hidden;
 			@apply flex items-center justify-center;
 			@apply border-b border-stone-200;
 			
@@ -23,13 +24,21 @@
 			@apply text-ellipsis overflow-hidden whitespace-nowrap;
 		}
 
+		.Bought {
+			@apply text-sm text-stone-600;
+
+			strong {
+				@apply font-semibold;
+			}
+		}
+
 		.Info {
 			@apply mt-4 text-stone-600 text-sm;
 			font-family: var(--font-serif);
 		}
 
 		.Price {
-			@apply mt-4;
+			@apply mt-auto pt-4;
 
 			.Value {
 				@apply font-medium text-stone-700;
@@ -41,4 +50,4 @@
 
 	} // .ListingItem
 
-} // .ListingGrid
+} // .OrderGrid
