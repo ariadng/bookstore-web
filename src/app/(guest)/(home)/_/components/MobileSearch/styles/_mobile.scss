@@ -1,0 +1,98 @@
+.MobileSearch {
+	@apply grow-0 shrink-0;
+	@apply w-full flex items-center justify-center;
+	@apply bg-white;
+
+	.SearchForm {
+		@apply w-full h-16 py-2 pl-5 pr-2 flex items-center;
+		@apply border-b border-stone-300;
+
+		.QueryInput {
+			@apply h-full w-full mr-1;
+
+			&:focus {
+				@apply outline-none;
+			}
+		}
+
+		.Field {
+			@apply relative h-full px-3;
+
+			.Display {
+				@apply text-stone-500;
+
+				&.Filled {
+					@apply text-stone-800 font-medium;
+				}
+
+			} // .Display
+
+			.Dropdown {
+				@apply absolute left-[0] top-[100%] z-[1000];
+				@apply w-[200px] py-4 flex flex-col;
+				@apply bg-white border border-stone-200 rounded-lg;
+				box-shadow: 0 2px 4px rgba(0,0,0,.1);
+
+				button {
+					@apply flex items-center justify-start;
+					@apply px-3 py-2;
+					@apply text-left;
+				}
+
+				button.Selected {
+					
+					.Label {
+						@apply font-medium;
+					}
+
+				}
+
+			} // .Dropdown
+
+			&:active {
+				@apply opacity-80;
+			}
+
+		} // .Field
+
+		.Separator {
+			@apply h-7 w-[1px];
+			@apply bg-stone-200;
+		} // .Separator
+
+		.ResetButton {
+			@apply mr-1 h-full aspect-square rounded-full;
+			@apply flex items-center justify-center;
+			@apply bg-transparent;
+
+			img {
+				@apply h-6 aspect-square;
+			}
+
+			&:hover {
+				@apply bg-stone-100;
+			}
+
+			&:active {
+				@apply opacity-80 bg-stone-300;
+			}
+		} // .ResetButton
+
+		.SearchButton {
+			@apply h-full aspect-square rounded-full;
+			@apply flex items-center justify-center;
+			@apply bg-stone-700 text-white;
+			background-color: var(--color-primary);
+
+			img {
+				@apply h-6 aspect-square;
+			}
+
+			&:active {
+				@apply opacity-80;
+			}
+		} // .SearchButton
+
+	} // .SearchForm
+
+} // .MobileSearch
