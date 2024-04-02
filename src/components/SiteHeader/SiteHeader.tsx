@@ -3,15 +3,8 @@
 import classNames from "classnames";
 import styles from "./styles/style.module.scss";
 import Link from "next/link";
-import TypeField from "./fields/TypeField/component";
 import { useCallback, useEffect, useState } from "react";
-import GuestsField from "./fields/GuestsField/component";
-import DateField from "./fields/DateField/component";
-import Filter from "@/types/Filter";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { User } from "@/types/User";
-import AuthUtils from "@/utils/AuthUtils";
-import GuestMenu from "./components/GuestMenu/component";
 import UserMenu from "./components/UserMenu/component";
 import { Button, Icon } from "@/ui";
 import { useAuth } from "@/context/AuthContext";
@@ -23,7 +16,6 @@ export default function SiteHeader() {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [ filter, setFilter ] = useState<Filter>({});
 	const [ searchQuery, setSearchQuery ] = useState<string>(searchParams.get("query") ?? "");
 
 	const handleSearch = useCallback(() => {
@@ -31,7 +23,7 @@ export default function SiteHeader() {
 			query: searchQuery,
 		}).toString();
 		router.push("/?" + sp);
-	}, [filter, searchQuery]);
+	}, [searchQuery]);
 
 	const resetSearch = useCallback(() => {
 		setSearchQuery("");

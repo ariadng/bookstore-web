@@ -1,5 +1,3 @@
-import ListingView from "@/types/ListingView";
-import listings from "@/data/listings.json";
 import { Book } from "@/types/Book";
 
 export default class ListingUtils {
@@ -38,13 +36,6 @@ export default class ListingUtils {
 
 		if (json.error) return [];
 		return json.data;
-	}
-
-	public static async get(listingId: string): Promise<ListingView | null> {
-		return new Promise((resolve) => {
-			const listing = listings.find(row => row.id === listingId);
-			resolve(listing ? listing as ListingView : null);
-		});
 	}
 
 } // class
