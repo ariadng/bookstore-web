@@ -77,10 +77,6 @@ export default function UserMenu(props: {
 					<span>Home</span>
 					<Icon className={styles.DropdownItemIcon} name="home" />
 				</Link>
-				<Link href="/about" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/about") })}>
-					<span>About</span>
-					<Icon className={styles.DropdownItemIcon} name="info" />
-				</Link>
 				<Link href="/orders" className={classNames(styles.DropdownItem, { [styles.Active]: isMenuActive("/orders") })}>
 					<span>My Orders ({props.user.orders?.length ?? 0})</span>
 					<Icon className={styles.DropdownItemIcon} name="receipt_long" />
