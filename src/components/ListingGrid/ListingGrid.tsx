@@ -8,7 +8,7 @@ import { Button } from "@/ui";
 import { useAuth } from "@/context/AuthContext";
 import { UIEventHandler, useEffect, useMemo, useRef, useState } from "react";
 import { LoadingSpinner } from "@/ui/LoadingSpinner";
-import ListingUtils from "@/utils/ListingUtils";
+import BookRepository from "@/repository/BookRepository";
 
 export default function ListingGrid(props: {
 	searchParams?: { [key: string]: string };
@@ -29,10 +29,10 @@ export default function ListingGrid(props: {
 	const loadData = async () => {
 		let items: Book[] = [];
 		if (!props.searchParams) {
-			items = await ListingUtils.index({ countPerPage: props.countPerPage });
+			items = await BookRepository.index({ countPerPage: props.countPerPage });
 		}
 		else {
-			items = await ListingUtils.search(props.searchParams, { countPerPage: props.countPerPage });
+			items = await BookRepository.search(props.searchParams, { countPerPage: props.countPerPage });
 		}
 		setData(items);
 		setLoading(false);
@@ -66,10 +66,10 @@ export default function ListingGrid(props: {
 
 		let items: Book[] = [];
 		if (!props.searchParams) {
-			items = await ListingUtils.index({ page: currentPage + 1, countPerPage: props.countPerPage });
+			items = await BookRepository.index({ page: currentPage + 1, countPerPage: props.countPerPage });
 		}
 		else {
-			items = await ListingUtils.search(props.searchParams, { page: currentPage + 1, countPerPage: props.countPerPage });
+			items = await BookRepository.search(props.searchParams, { page: currentPage + 1, countPerPage: props.countPerPage });
 		}
 
 		if (items.length === 0) {

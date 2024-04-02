@@ -1,6 +1,6 @@
 import { Book } from "@/types/Book";
 
-export default class ListingUtils {
+export default class BookRepository {
 
 	public static async index(options?: {
 		page?: number;
