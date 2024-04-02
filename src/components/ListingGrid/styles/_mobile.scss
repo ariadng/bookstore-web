@@ -1,5 +1,5 @@
 .ListingGrid {
-	@apply relative;
+	@apply relative py-5 px-10;
 	@apply h-full overflow-auto;
 	@apply grid grid-cols-1 gap-5;
 
@@ -12,11 +12,11 @@
 
 	.ListingItem {
 		@apply flex flex-col pb-10;
+		@apply text-center;
 
 		.Photos {
-
 			@apply relative mb-6 pb-4;
-			@apply w-full aspect-square overflow-hidden;
+			@apply w-full aspect-[4/3] overflow-hidden;
 			@apply flex items-center justify-center;
 			@apply border-b border-stone-200;
 			
@@ -33,7 +33,7 @@
 		}
 
 		.Info {
-			@apply mt-4 text-stone-600 text-sm;
+			@apply mt-4 text-stone-600 text-base;
 			font-family: var(--font-serif);
 		}
 

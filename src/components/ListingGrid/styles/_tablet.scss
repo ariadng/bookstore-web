@@ -4,6 +4,15 @@
 
 	.ListingItem {
 		@apply pb-0;
+		@apply text-left;
+
+		.Photos {
+			@apply aspect-square;
+		}
+
+		.Info {
+			@apply text-sm;
+		}
 	}
 
 } // .ListingGrid

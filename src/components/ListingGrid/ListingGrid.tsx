@@ -36,6 +36,7 @@ export default function ListingGrid(props: {
 		}
 		setData(items);
 		setLoading(false);
+		setLastAttempt(false);
 	};
 
 	const orderBook = async (bookId: number) => {

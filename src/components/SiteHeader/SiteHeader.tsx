@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 import GuestsField from "./fields/GuestsField/component";
 import DateField from "./fields/DateField/component";
 import Filter from "@/types/Filter";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { User } from "@/types/User";
 import AuthUtils from "@/utils/AuthUtils";
 import GuestMenu from "./components/GuestMenu/component";
@@ -21,21 +21,26 @@ export default function SiteHeader() {
 	const { user } = useAuth();
 	const router = useRouter();
 	const pathname = usePathname();
+	const searchParams = useSearchParams();
 
 	const [ filter, setFilter ] = useState<Filter>({});
-	const [ searchQuery, setSearchQuery ] = useState<string>("");
+	const [ searchQuery, setSearchQuery ] = useState<string>(searchParams.get("query") ?? "");
 
 	const handleSearch = useCallback(() => {
-		const searchParams = new URLSearchParams({
+		const sp = new URLSearchParams({
 			query: searchQuery,
 		}).toString();
-		router.push("/?" + searchParams);
+		router.push("/?" + sp);
 	}, [filter, searchQuery]);
 
 	const resetSearch = useCallback(() => {
 		setSearchQuery("");
 		router.push("/");
 	}, []);
+
+	useEffect(() => {
+		setSearchQuery(searchParams.get("query") ?? "");
+	}, [searchParams]);
 
 	return (
 		<div className={classNames(styles.SiteHeader)}>
@@ -50,9 +55,9 @@ export default function SiteHeader() {
 				<div className={styles.SearchForm}>
 					
 					<input className={styles.QueryInput} placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.currentTarget.value)} onKeyUp={(e) =>{ if (e.key === "Enter") handleSearch() }} />
-					<button className={styles.ResetButton} onClick={() => resetSearch()}>
+					{searchParams.has("query") && <button className={styles.ResetButton} onClick={() => resetSearch()}>
 						<Icon name="close" className="text-stone-700" />
-					</button>
+					</button>}
 					<button className={styles.SearchButton} onClick={() => handleSearch()}>
 						<img src="/icons/search_white.svg" />
 					</button>
