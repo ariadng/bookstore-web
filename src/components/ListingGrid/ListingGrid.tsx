@@ -1,16 +1,42 @@
 "use client";
 
+import * as _ from "lodash";
 import { OrderRepository } from "@/repository/OrderRepository";
 import styles from "./styles/style.module.scss";
 import { Book } from "@/types/Book";
 import { Button } from "@/ui";
 import { useAuth } from "@/context/AuthContext";
+import { UIEventHandler, useEffect, useMemo, useRef, useState } from "react";
+import { LoadingSpinner } from "@/ui/LoadingSpinner";
+import ListingUtils from "@/utils/ListingUtils";
 
 export default function ListingGrid(props: {
-	data: Book[];
+	searchParams?: { [key: string]: string };
+	countPerPage: number;
 }) {
 
 	const { refreshUser, isAuthenticated } = useAuth();
+	const containerRef = useRef<HTMLDivElement>(null);
+
+	const [ data, setData ] = useState<Book[]>([]);
+	const [ loading, setLoading ] = useState<boolean>(true);
+	const [ lastAttempt, setLastAttempt ] = useState<boolean>(false);
+
+	const currentPage = useMemo(() => {
+		return Math.ceil(data.length / props.countPerPage);
+	}, [data, props.countPerPage]);
+
+	const loadData = async () => {
+		let items: Book[] = [];
+		if (!props.searchParams) {
+			items = await ListingUtils.index({ countPerPage: props.countPerPage });
+		}
+		else {
+			items = await ListingUtils.search(props.searchParams, { countPerPage: props.countPerPage });
+		}
+		setData(items);
+		setLoading(false);
+	};
 
 	const orderBook = async (bookId: number) => {
 		
@@ -24,9 +50,57 @@ export default function ListingGrid(props: {
 
 	};
 
+	const handleScroll: UIEventHandler<HTMLDivElement> = (event) => {
+		const scrollHeight = event.currentTarget.scrollHeight;
+		const scrollAmount = event.currentTarget.scrollTop + event.currentTarget.clientHeight;
+		const scrollProgress = Math.ceil(scrollAmount / scrollHeight * 100); // 0 - 100
+
+		if (!loading && (scrollProgress >= 80) && !lastAttempt) {
+			loadMore();
+		}
+	};
+	
+	const loadMore = _.throttle(async () => {
+		setLoading(true);
+
+		let items: Book[] = [];
+		if (!props.searchParams) {
+			items = await ListingUtils.index({ page: currentPage + 1, countPerPage: props.countPerPage });
+		}
+		else {
+			items = await ListingUtils.search(props.searchParams, { page: currentPage + 1, countPerPage: props.countPerPage });
+		}
+
+		if (items.length === 0) {
+			setLoading(false);
+			setLastAttempt(true);
+			return;
+		}
+		
+		// This timeout is just for UI purposes to show the infinite scrolling implementation
+		setTimeout(() => {
+			const newData = _.uniqBy([...data, ...items], "id");
+			setData(newData);
+			setLoading(false);
+		}, 1000);
+
+	}, 1000);
+
+	useEffect(() => {
+		loadData();
+	}, [props.searchParams]);
+
 	return (
-		<div className={styles.ListingGrid}>
-			{props.data.map(item => (
+		<div ref={containerRef} className={styles.ListingGrid} onScroll={handleScroll}>
+
+			{loading && (
+				<div className={styles.LoadingSpinner}>
+					<LoadingSpinner />
+					<span>Loading</span>
+				</div>
+			)}
+
+			{data.map(item => (
 				<div
 					key={item.id}
 					className={styles.ListingItem}

@@ -13,7 +13,7 @@ import { User } from "@/types/User";
 import AuthUtils from "@/utils/AuthUtils";
 import GuestMenu from "./components/GuestMenu/component";
 import UserMenu from "./components/UserMenu/component";
-import { Button } from "@/ui";
+import { Button, Icon } from "@/ui";
 import { useAuth } from "@/context/AuthContext";
 
 export default function SiteHeader() {
@@ -32,6 +32,11 @@ export default function SiteHeader() {
 		router.push("/?" + searchParams);
 	}, [filter, searchQuery]);
 
+	const resetSearch = useCallback(() => {
+		setSearchQuery("");
+		router.push("/");
+	}, []);
+
 	return (
 		<div className={classNames(styles.SiteHeader)}>
 			
@@ -45,6 +50,9 @@ export default function SiteHeader() {
 				<div className={styles.SearchForm}>
 					
 					<input className={styles.QueryInput} placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.currentTarget.value)} onKeyUp={(e) =>{ if (e.key === "Enter") handleSearch() }} />
+					<button className={styles.ResetButton} onClick={() => resetSearch()}>
+						<Icon name="close" className="text-stone-700" />
+					</button>
 					<button className={styles.SearchButton} onClick={() => handleSearch()}>
 						<img src="/icons/search_white.svg" />
 					</button>

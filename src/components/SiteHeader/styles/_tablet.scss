@@ -67,6 +67,24 @@
 				@apply bg-stone-200;
 			} // .Separator
 
+			.ResetButton {
+				@apply mr-1 h-full aspect-square rounded-full;
+				@apply flex items-center justify-center;
+				@apply bg-transparent;
+
+				img {
+					@apply h-6 aspect-square;
+				}
+
+				&:hover {
+					@apply bg-stone-100;
+				}
+
+				&:active {
+					@apply opacity-80 bg-stone-300;
+				}
+			} // .ResetButton
+
 			.SearchButton {
 				@apply h-full aspect-square rounded-full;
 				@apply flex items-center justify-center;

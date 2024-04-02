@@ -1,5 +1,14 @@
 .ListingGrid {
+	@apply relative;
+	@apply h-full overflow-auto;
 	@apply grid grid-cols-1 gap-5;
+
+	.LoadingSpinner {
+		@apply fixed bottom-10 left-[calc(50%-75px)] z-[1000];
+		@apply flex items-center justify-center gap-2 p-4 w-[150px];
+		@apply bg-white drop-shadow-lg rounded-xl;
+		@apply text-stone-700 font-medium;
+	}
 
 	.ListingItem {
 		@apply flex flex-col pb-10;

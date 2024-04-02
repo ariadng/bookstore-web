@@ -11,11 +11,6 @@ export default function SiteLayout (props: {
 				<div className="ScreenContent">
 					{props.children}
 				</div>
-				{/* <footer style={{
-					padding: 20,
-				}}>
-					Footer
-				</footer> */}
 			</div>
 		</div>
 	);
